@@ -1,0 +1,113 @@
+scalar EmailAddress
+scalar URL
+scalar Upload
+directive @auth on FIELD_DEFINITION | FIELD 
+
+type Query {
+    getSingleClient(id:ID):Client!
+    getClients:[Client]!
+    getSingleTransaction(id:ID):Transaction!
+    getTransactions:[Transaction]!
+    me:Client!
+}
+
+type Mutation {
+    createNewClient(data: ClientInput!):Client!
+    updateOneClient(id:ID!, data: ClientUpdateInput!):Client!@auth
+    deleteOneClient(id:ID!):String!@auth
+    createNewTransaction(data: TransactionInput!):Transaction!@auth
+    updateOneTransaction(id:ID!, data: TransactionUpdateInput!):Transaction!@auth
+    deleteOneTransaction(id:ID!):String!@auth
+    login(email:EmailAddress!, password:String!):Auth!
+}
+
+type Subscription{
+    transaction: TransactionSubscriptionPayload!
+}
+
+type TransactionSubscriptionPayload{
+    mutation:String!
+    data:Transaction!
+}
+
+type Auth{
+    token:String!
+    message:String!
+}
+
+type Transaction{
+    _id:ID!
+    currency:TOKENS
+    transaction_type: TRANSACTION_TYPE
+    client:Client!
+}
+
+type Client{
+    _id:ID!
+    first_name:String!
+    last_name:String!
+    email:EmailAddress!
+    birth_date:String!
+    transactions:[Transaction]!
+}
+
+input TransactionInput{
+     currency: TOKENS
+    # quantity: Float
+    transaction_type: TRANSACTION_TYPE
+    #User:String!
+}
+
+input ClientInput{
+    first_name:String!
+    last_name:String!
+    email:EmailAddress!
+    password: String!
+    birth_date:String
+    
+}
+
+input TransactionUpdateInput{
+    currency: TOKENS
+    # quantity: Float
+    transaction_type: TRANSACTION_TYPE
+    #User:String!
+}
+
+
+input ClientUpdateInput{
+    first_name:String
+    last_name:String
+    email:EmailAddress
+    birth_date:String
+    gender: GENDERS
+    profile_pic:String
+    is_active:Boolean
+}
+
+enum GENDERS {
+    M
+    F
+    O
+}enum TRANSACTION_TYPE {
+    COMPRA
+    VENTA
+}
+
+
+
+enum TOKENS {
+     BTC
+    ETH
+    XRP
+}
+
+enum TOKEN_BALANCES {
+    BTC
+    ETH
+    XRP
+}
+
+
+
+

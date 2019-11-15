@@ -1,0 +1,41 @@
+{
+  "name": "b35-backend",
+  "version": "1.0.0",
+  "description": "Backend b35",
+  "main": "index.js",
+  "engines": {
+    "node": "12.9.1",
+    "npm": "6.10.3"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js  -f *.graphql",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malibb/b35-backend.git"
+  },
+  "keywords": [
+    "backend",
+    "graphql"
+  ],
+  "author": "malibb98",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/malibb/b35-backend/issues"
+  },
+  "homepage": "https://github.com/malibb/b35-backend#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "cloudinary": "1.15.0",
+    "graphql-scalars": "^1.0.4",
+    "graphql-yoga": "^1.18.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.6",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
